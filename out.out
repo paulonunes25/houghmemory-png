@@ -1,0 +1,130 @@
+Rtable entry: Grad = ****IIIIFFFF | subentry: A = 0
+                                  
+Rtable entry: Grad = IIIIFFFFFFFF | subentry: A = -1
+                                  
+Rtable entry: Grad = FFFFFFFFFFFF | subentry: A = -13
+                                  | subentry: A = -5
+                                  | subentry: A = -4
+                                  | subentry: A = -3
+                                  | subentry: A = -2
+                                  
+Rtable entry: Grad = FFFFFFFFCPPP | subentry: A = -6
+                                  
+Rtable entry: Grad = FFFFCPPPRRRR | subentry: A = -7
+                                  
+Rtable entry: Grad = CPPPRRRRRRRR | subentry: A = -8
+                                  
+Rtable entry: Grad = RRRRRRRRRRRR | subentry: A = -10
+                                  | subentry: A = -9
+                                  
+Rtable entry: Grad = RRRRRRRRFFFF | subentry: A = -11
+                                  
+Rtable entry: Grad = RRRRFFFFFFFF | subentry: A = -12
+                                  
+Rtable entry: Grad = FFFFFFFFRRRR | subentry: A = -14
+                                  
+Rtable entry: Grad = FFFFRRRR**** | subentry: A = -15
+                                  
+Wset: RRRR
+      CPPP
+      FFFF
+      IIII
+      
+GradientSpace: 
+**** | RRRR | RRRR
+RRRR | RRRR | ****
+RRRR | RRRR | RRRR
+RRRR | RRRR | CPPP
+RRRR | RRRR | FFFF
+RRRR | RRRR | IIII
+**** | RRRR | CPPP
+RRRR | CPPP | ****
+RRRR | CPPP | RRRR
+RRRR | CPPP | CPPP
+RRRR | CPPP | FFFF
+RRRR | CPPP | IIII
+**** | RRRR | FFFF
+RRRR | FFFF | ****
+RRRR | FFFF | RRRR
+RRRR | FFFF | CPPP
+RRRR | FFFF | FFFF
+RRRR | FFFF | IIII
+**** | RRRR | IIII
+RRRR | IIII | ****
+RRRR | IIII | RRRR
+RRRR | IIII | CPPP
+RRRR | IIII | FFFF
+RRRR | IIII | IIII
+**** | CPPP | RRRR
+CPPP | RRRR | ****
+CPPP | RRRR | RRRR
+CPPP | RRRR | CPPP
+CPPP | RRRR | FFFF
+CPPP | RRRR | IIII
+**** | CPPP | CPPP
+CPPP | CPPP | ****
+CPPP | CPPP | RRRR
+CPPP | CPPP | CPPP
+CPPP | CPPP | FFFF
+CPPP | CPPP | IIII
+**** | CPPP | FFFF
+CPPP | FFFF | ****
+CPPP | FFFF | RRRR
+CPPP | FFFF | CPPP
+CPPP | FFFF | FFFF
+CPPP | FFFF | IIII
+**** | CPPP | IIII
+CPPP | IIII | ****
+CPPP | IIII | RRRR
+CPPP | IIII | CPPP
+CPPP | IIII | FFFF
+CPPP | IIII | IIII
+**** | FFFF | RRRR
+FFFF | RRRR | ****
+FFFF | RRRR | RRRR
+FFFF | RRRR | CPPP
+FFFF | RRRR | FFFF
+FFFF | RRRR | IIII
+**** | FFFF | CPPP
+FFFF | CPPP | ****
+FFFF | CPPP | RRRR
+FFFF | CPPP | CPPP
+FFFF | CPPP | FFFF
+FFFF | CPPP | IIII
+**** | FFFF | FFFF
+FFFF | FFFF | ****
+FFFF | FFFF | RRRR
+FFFF | FFFF | CPPP
+FFFF | FFFF | FFFF
+FFFF | FFFF | IIII
+**** | FFFF | IIII
+FFFF | IIII | ****
+FFFF | IIII | RRRR
+FFFF | IIII | CPPP
+FFFF | IIII | FFFF
+FFFF | IIII | IIII
+**** | IIII | RRRR
+IIII | RRRR | ****
+IIII | RRRR | RRRR
+IIII | RRRR | CPPP
+IIII | RRRR | FFFF
+IIII | RRRR | IIII
+**** | IIII | CPPP
+IIII | CPPP | ****
+IIII | CPPP | RRRR
+IIII | CPPP | CPPP
+IIII | CPPP | FFFF
+IIII | CPPP | IIII
+**** | IIII | FFFF
+IIII | FFFF | ****
+IIII | FFFF | RRRR
+IIII | FFFF | CPPP
+IIII | FFFF | FFFF
+IIII | FFFF | IIII
+**** | IIII | IIII
+IIII | IIII | ****
+IIII | IIII | RRRR
+IIII | IIII | CPPP
+IIII | IIII | FFFF
+IIII | IIII | IIII
+
