@@ -1,14 +1,19 @@
 #include <rtable.h>
 
+double prob1[256][9];
+double prob2[256][9];
+double prob3[256][9];
+double prob4[256][9];
+
 int main(int argc, char *argv[]){
-  int i, c, x, p, q, r;
+  int i, c, x, p, q, r, n;
   FILE* input; 
   char any[4] = {'*', '*', '*', '*'};
   char grad[13];
   char *buf;
   Rtable *shape = NULL;
 
-  if(argc!=2) return 1;
+  if(argc!=6) return 1;
 
   buf = (char*) malloc(5 * sizeof(char));
   for(i=0; i<4; i++) grad[i] = any[i];
@@ -17,6 +22,26 @@ int main(int argc, char *argv[]){
   grad[12] = '\0';
 
   input = fopen(argv[1],"r");
+  for(i=0; i<256; i++){ 
+    fscanf(input,"%d; %le; %le; %le; %le; %le; %le; %le; %le; %le;\n",&n, &prob1[i][0], &prob1[i][1], &prob1[i][2], &prob1[i][3], &prob1[i][4], &prob1[i][5], &prob1[i][6], &prob1[i][7], &prob1[i][8]);
+  }
+
+  input = fopen(argv[2],"r");
+  for(i=0; i<256; i++){ 
+    fscanf(input,"%d; %le; %le; %le; %le; %le; %le; %le; %le; %le;\n",&n, &prob2[i][0], &prob2[i][1], &prob2[i][2], &prob2[i][3], &prob2[i][4], &prob2[i][5], &prob2[i][6], &prob2[i][7], &prob2[i][8]);
+  }
+
+  input = fopen(argv[3],"r");
+  for(i=0; i<256; i++){ 
+    fscanf(input,"%d; %le; %le; %le; %le; %le; %le; %le; %le; %le;\n",&n, &prob3[i][0], &prob3[i][1], &prob3[i][2], &prob3[i][3], &prob3[i][4], &prob3[i][5], &prob3[i][6], &prob3[i][7], &prob3[i][8]);
+  }
+
+  input = fopen(argv[4],"r");
+  for(i=0; i<256; i++){ 
+    fscanf(input,"%d; %le; %le; %le; %le; %le; %le; %le; %le; %le;\n",&n, &prob4[i][0], &prob4[i][1], &prob4[i][2], &prob4[i][3], &prob4[i][4], &prob4[i][5], &prob4[i][6], &prob4[i][7], &prob4[i][8]);
+  }
+
+  input = fopen(argv[5],"r");
 
   fscanf(input,"%s\n",buf);
   for(i=4; i<8; i++) grad[i] = buf[i-4];
