@@ -1,19 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifndef _TIPOS_
-#define _TIPOS_
-
-typedef enum tipos{
-  I,
-  F,
-  R,
-  L,
-  D,
-  C,
-  B,
-  S
-}Tipos;
+#include <byteType.h>
 
 typedef struct probs{
   double **msb;
@@ -23,4 +10,4 @@ typedef struct probs{
 }Apriori;
 
 Apriori loadApriori(char **aprioriFiles);
-#endif
+

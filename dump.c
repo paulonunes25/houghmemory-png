@@ -18,7 +18,7 @@ Dump loadDump(char *filename){
   unsigned char db;
   short ds;
   Dump x;
-  Tipos t;
+  ByteTypes t;
 
   if(filename == NULL){
     x = (Dump) malloc(PAGESIZE * sizeof(unsigned char));

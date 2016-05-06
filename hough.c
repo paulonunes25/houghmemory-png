@@ -109,11 +109,11 @@ int main(int argc, char *argv[]){
 
   shape = loadShape(argv[1]);
 
-  printShape(shape);
+  //printShape(shape);
 
   dump = loadDump(NULL);
 
-  printDump(dump);
+  //printDump(dump);
 
   parse(dump, shape);
 

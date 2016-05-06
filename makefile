@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = rtable.h wset.h dump.h apriori.h
-OBJ = hough.o rtable.o wset.o dump.o apriori.o
+DEPS = rtable.h wset.h dump.h apriori.h byteType.h
+OBJ = hough.o rtable.o wset.o dump.o apriori.o byteType.o
 EXECUTABLE = hough
 
 %.o: %.c $(DEPS)
