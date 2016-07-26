@@ -71,3 +71,4 @@ void printGradientSpace(Wset *s){
     for(z=0; z<s->size; z++) printf("%s | %s | %s\n", s->index[x]->word, s->index[y]->word, s->index[z]->word);
     }
 }
+

@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _WSET__
+#define _WSET_
+
 
 typedef struct Welem{
   char *word;
@@ -26,3 +29,5 @@ Wset *indexSet(Wset *s);
 void printSet(Wset *s);
 
 void printGradientSpace(Wset *s);
+
+#endif

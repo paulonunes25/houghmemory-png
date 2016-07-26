@@ -1,4 +1,6 @@
-#include <wset.h>
+//#include <wset.h>
+#ifndef _RTABLE_
+#define _RTABLE_
 
 typedef struct Alist{
   int a;
@@ -14,3 +16,13 @@ typedef struct Rtable{
 Rtable *createEntry(Rtable *r, char *gradx, int a);
 
 void printShape(Rtable *shape);
+
+void printTable(double *accTbl);
+
+void exportTable(char *filename, double *accTbl);
+
+void zeroAccumulator();
+
+//void incrementAccumulator(Dump dump, int x, Rtable *shape, Apriori p, double *AccumulatorTable);
+
+#endif

@@ -3,6 +3,8 @@
 #ifndef _TIPOS_
 #define _TIPOS_
 
+#define NTYPES 10
+
 typedef enum tipos{
   I,
   F,
@@ -12,11 +14,14 @@ typedef enum tipos{
   C,
   B,
   S,
-  P
+  P,
+  Z
 }ByteTypes;
 
-static const char typeChar[9];
-static const char *typeStr[9];
+static const char typeChar[NTYPES];
+static const char *typeStr[NTYPES];
+
+ByteTypes typeIndex(char x);
 
 #endif
 

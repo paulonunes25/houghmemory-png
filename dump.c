@@ -1,5 +1,50 @@
 #include <dump.h>
 
+const char *int_to_binary(int x)
+{
+    static char b[33];
+    b[0] = '\0';
+
+    unsigned int z;
+    for (z = (1 << 31); z > 0; z >>= 1)
+    {
+        strcat(b, ((x & z) == z) ? "1" : "0");
+    }
+
+    return b;
+}
+
+Dump addNoise(Dump x, int i){
+  int j, k, p;
+  unsigned int mask;
+  FILE *noise;
+  char filename[20];
+  unsigned char b1, b2, b3, b4;
+
+  if(i==0) return x;
+  sprintf(filename, "random%02d.txt", i);
+  noise = fopen(filename, "r");
+  for(j=0; j<PAGESIZE; j+=4){
+    mask = 0;
+    for(k=0; k<i; k++){
+      fscanf(noise, "%d\n", &p);
+      mask = mask | (1<<p);
+    }
+    b1 = (unsigned char) (mask >> 24);
+    b2 = (unsigned char) (mask >> 16);
+    b3 = (unsigned char) (mask >> 8);
+    b4 = (unsigned char) (mask);
+ 
+    x[j] ^= b1; 
+    x[j+1] ^= b2;
+    x[j+2] ^= b3;
+    x[j+3] ^= b4;
+
+  }
+  fclose(noise); 
+  return x;
+}
+
 int printDump(Dump x){
   int i;
   printf("Dump = 0x");
@@ -19,16 +64,18 @@ Dump loadDump(char *filename){
   short ds;
   Dump x;
   ByteTypes t;
+  FILE *dumpfile;
+
+  x = (Dump) malloc((PAGESIZE+15) * sizeof(unsigned char));
 
   if(filename == NULL){
-    x = (Dump) malloc(PAGESIZE * sizeof(unsigned char));
 
     srand(time(NULL));
-    step = 25 + (rand()%10);
+    step = 4;
     i=0;
-    while(PAGESIZE - i > 0){
+    while(i < PAGESIZE){
       t = rand()%8;
-      if(i > step) t = 8;
+      if(i >= step) t = 8;
       switch(t) {
       case I:
 	di = rand()%200 - 100;
@@ -90,6 +137,7 @@ Dump loadDump(char *filename){
 	i+=2;
 	ds = rand()%65536 - 32768;
 	memcpy(&x[i], &ds, 2);
+	i+=2;
 	break;
       case 8:
 	di = 25;
@@ -110,14 +158,21 @@ Dump loadDump(char *filename){
 	dc = '\0';
 	memcpy(&x[i], &dc, 1);
 	i+=1;
-	dr = malloc(sizeof(int));
-	memcpy(&x[i], &dr, 4);
-	i+=4;
-	free(dr);
+	x[i++] = 104;
+	x[i++] = 75;
+	x[i++] = 105;
+	x[i++] = 65;
 	step = i + 25 + (rand()%10);
 	break;
       }
     }
+    dumpfile = fopen("dump.tmp","wb");
+    if(dumpfile != NULL) fwrite(x, sizeof(unsigned char), PAGESIZE, dumpfile); 
+  }else{
+    dumpfile = fopen(filename,"rb");
+    fread(x, sizeof(unsigned char), PAGESIZE, dumpfile);
   }
+  fclose(dumpfile);
   return x;
 }
+

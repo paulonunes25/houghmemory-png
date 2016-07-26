@@ -3,7 +3,7 @@
 #include <apriori.h>
 
 #define CONFIGFILE "hough.config"
-
+#define NNOISE 17
 char **readConfig(char *filename){
   FILE *config;
   char *input1 = NULL, *input2 = NULL, *input3 = NULL, *input4 = NULL, *label, *value, **inputs;
@@ -14,7 +14,6 @@ char **readConfig(char *filename){
   config = fopen("hough.config","r");
 
   while(fscanf(config,"%s = %s\n",label,value)>0){
-    //    printf("Label: %s, Value: %s\n",label,value);
     if(strcmp("priori_byte1",label)==0){
       input1 = (char*) malloc(strlen(label)*sizeof(char));
       strcpy(input1,value);
@@ -48,8 +47,8 @@ char **readConfig(char *filename){
 }
 
 Rtable *loadShape(char *filename){
- int i, x;
-  char any[4] = {'*', '*', '*', '*'};
+  int i, x;
+  char any[4] = {'Z', 'Z', 'Z', 'Z'};
   char grad[13];
   char *buf;
   Rtable *shape = NULL;
@@ -70,21 +69,29 @@ Rtable *loadShape(char *filename){
   while(fscanf(input,"%s\n",buf)>0){
     for(i=8; i<12; i++) grad[i] = buf[i-8];
 
-    //    printf("createEntry: Grad = %s, x = %d\n", grad, x);
     shape = createEntry(shape, grad, x--);
 
     for(i=0; i<8; i++) grad[i] = grad[i+4];
   }
   for(i=8; i<12; i++) grad[i] = any[i-8];
-  //  printf("createEntry: Grad = %s, x = %d\n", grad, x);
+
   shape = createEntry(shape, grad, x--);
   fclose(input);
-  //  printf("\n*****\n\n");
+
   return shape;
 }
 
-void parse(dump, shape){
+double *parse(Dump dump, Rtable *shape, Apriori p){
+  double *AccumulatorTable;
+  int i;
 
+  AccumulatorTable = (double *) malloc(PAGESIZE*sizeof(double));
+  for(i=0; i<PAGESIZE; i++) AccumulatorTable[i] = 1.0;
+
+  for(i=0; i<PAGESIZE-3; i++){
+    incrementAccumulator(dump, i, shape, p, AccumulatorTable);
+  }
+  return AccumulatorTable;
 }
 
 int main(int argc, char *argv[]){
@@ -92,30 +99,48 @@ int main(int argc, char *argv[]){
   Rtable *shape = NULL;
   Dump dump;
   char **aprioriFiles;
+  char *exportfile, *dumpfile = NULL;
   Apriori p;
+  double *accTbl;
+  int i, debug = 0;
 
-  if(argc!=2){
-    printf("Commandline parameter error\n");
+  if(argc<2){
+    printf("Program sintax:\nhough [-d] shape.in [dump.dat]\n");
     return 1;
   }
+
+  if(strcmp(argv[1],"-d")==0){
+    debug = 1;
+    shape = loadShape(argv[2]);
+    if(argc==4) dumpfile = argv[3];
+  } else {
+    shape = loadShape(argv[1]);
+    if(argc==3) dumpfile = argv[2];
+  }
+
+  exportfile = malloc(50 * sizeof(char));
 
   aprioriFiles = readConfig(CONFIGFILE);
   if(aprioriFiles == NULL){
     printf("Config file error\n");
     return 1;
   }
-
   p = loadApriori(aprioriFiles);
 
-  shape = loadShape(argv[1]);
+  for(i = 0; i<NNOISE; i++){
+    if(dumpfile==NULL) dump = loadDump(dumpfile); 
+    else dump = loadDump(NULL);
+    dump = addNoise(dump,i);
+    if(debug) printShape(shape);
+    if(debug) printDump(dump);
 
-  //printShape(shape);
-
-  dump = loadDump(NULL);
-
-  //printDump(dump);
-
-  parse(dump, shape);
+    accTbl = parse(dump, shape, p);
+    if(debug) printTable(accTbl);
+    sprintf(exportfile, "export_noise%02d_%s", i, dumpfile);
+    exportTable(exportfile, accTbl);
+    free(accTbl);
+    zeroAccumulator();
+  }
 
   return 0;
 }
