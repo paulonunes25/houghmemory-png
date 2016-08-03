@@ -8,7 +8,7 @@ EXECUTABLE = hough
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(EXECUTABLE): $(OBJ)
-	gcc -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
 	rm -f *.o *~ core $(EXECUTABLE)

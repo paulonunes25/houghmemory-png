@@ -3,7 +3,7 @@
 #include <apriori.h>
 
 #define CONFIGFILE "hough.config"
-#define NNOISE 17
+
 char **readConfig(char *filename){
   FILE *config;
   char *input1 = NULL, *input2 = NULL, *input3 = NULL, *input4 = NULL, *label, *value, **inputs;
@@ -100,16 +100,47 @@ int main(int argc, char *argv[]){
   Dump dump;
   char **aprioriFiles;
   char *exportfile, *dumpfile = NULL;
+  char **paramv; 
   Apriori p;
   double *accTbl;
-  int i, debug = 0;
+  int i, paramc, NNOISE = 17, debug = 0;
 
   if(argc<2){
-    printf("Program sintax:\nhough [-d] shape.in [dump.dat]\n");
+    printf("Program sintax:\nhough [-d] [-n N] shape.in [dump.dat]\n");
     return 1;
   }
 
-  if(strcmp(argv[1],"-d")==0){
+  paramv = &argv[1];
+  paramc = argc - 1;
+
+  while(paramc > 0){
+    if(strcmp(paramv[0],"-d")==0) {
+      debug = 1; 
+      paramv = &paramv[1];
+      paramc = paramc - 1;
+    } else if(strcmp(paramv[0],"-n")==0){
+      NNOISE = atoi(paramv[1]); 
+      if(debug) printf("NNOISE = %d\n", NNOISE);
+      paramv = &paramv[2];
+      paramc = paramc - 2;
+    } else {
+      shape = loadShape(paramv[0]);
+      paramv = &paramv[1];
+      paramc = paramc - 1;
+      if(paramc==1) {
+        dumpfile = paramv[0];
+        if(debug) printf("dumpfile = %s\n", dumpfile);
+        paramv = &paramv[1];
+        paramc = paramc - 1;
+      }
+    } 
+    if(debug) printf("paramc = %d\n", paramc);
+  }
+
+
+
+
+/*  if(strcmp(argv[1],"-d")==0){
     debug = 1;
     shape = loadShape(argv[2]);
     if(argc==4) dumpfile = argv[3];
@@ -117,7 +148,7 @@ int main(int argc, char *argv[]){
     shape = loadShape(argv[1]);
     if(argc==3) dumpfile = argv[2];
   }
-
+*/
   exportfile = malloc(50 * sizeof(char));
 
   aprioriFiles = readConfig(CONFIGFILE);
@@ -128,8 +159,7 @@ int main(int argc, char *argv[]){
   p = loadApriori(aprioriFiles);
 
   for(i = 0; i<NNOISE; i++){
-    if(dumpfile==NULL) dump = loadDump(dumpfile); 
-    else dump = loadDump(NULL);
+    dump = loadDump(dumpfile); 
     dump = addNoise(dump,i);
     if(debug) printShape(shape);
     if(debug) printDump(dump);
