@@ -1,0 +1,171 @@
+position_rnd0.txt
+export_noise00_dump_rnd0.dat
+4;4
+
+56;4
+
+104;4
+
+148;4
+
+196;4
+
+200;4
+
+244;4
+
+272;4
+
+292;4
+
+296;4
+
+298;4
+
+336;4
+
+388;4
+
+392;4
+
+436;4
+
+484;4
+
+532;4
+
+580;4
+
+632;4
+
+676;4
+
+720;4
+
+764;4
+
+768;4
+
+816;4
+
+836;4
+
+868;4
+
+912;4
+
+956;4
+
+1004;4
+
+Control = 21, TP = 6, FP = 23
+export_noise01_dump_rnd0.dat
+4;4
+
+56;4
+
+104;4
+
+148;4
+
+200;4
+
+203;4
+
+292;4
+
+296;4
+
+336;4
+
+388;4
+
+436;4
+
+532;4
+
+720;4
+
+764;4
+
+803;4
+
+816;4
+
+868;4
+
+960;4
+
+Control = 21, TP = 4, FP = 14
+export_noise02_dump_rnd0.dat
+148;4
+
+244;4
+
+484;4
+
+613;4
+
+632;4
+
+720;4
+
+764;4
+
+Control = 21, TP = 0, FP = 7
+export_noise03_dump_rnd0.dat
+108;4
+
+200;4
+
+204;4
+
+432;4
+
+Control = 21, TP = 0, FP = 4
+export_noise04_dump_rnd0.dat
+558;4
+
+Control = 21, TP = 0, FP = 1
+export_noise05_dump_rnd0.dat
+292;4
+
+616;4
+
+936;4
+
+944;4
+
+Control = 21, TP = 0, FP = 4
+export_noise06_dump_rnd0.dat
+4;4
+
+Control = 21, TP = 1, FP = 0
+export_noise07_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise08_dump_rnd0.dat
+116;4
+
+Control = 21, TP = 0, FP = 1
+export_noise09_dump_rnd0.dat
+996;4
+
+Control = 21, TP = 0, FP = 1
+export_noise10_dump_rnd0.dat
+472;4
+
+710;4
+
+Control = 21, TP = 0, FP = 2
+export_noise11_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise12_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise13_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise14_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise15_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
+export_noise16_dump_rnd0.dat
+Control = 21, TP = 0, FP = 0
