@@ -1,0 +1,17 @@
+position=4
+position=68
+position=96
+position=172
+position=220
+position=300
+position=344
+position=420
+position=476
+position=528
+position=624
+position=668
+position=720
+position=792
+position=844
+position=900
+position=992
